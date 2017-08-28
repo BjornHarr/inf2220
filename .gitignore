@@ -1,5 +1,5 @@
 # Other files #
-.pages
+*.pages
 
 # Compiled class file #
 *.class
