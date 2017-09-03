@@ -3,8 +3,8 @@
 *.pdf
 
 # Folders #
-/Weekly\ tasks
-/Tree\ structures
+Weekly\ tasks
+Tree\ structures
 
 # Compiled class file #
 *.class
