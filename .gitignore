@@ -1,5 +1,10 @@
 # Other files #
 *.pages
+*.pdf
+
+# Folders #
+/Weekly\ tasks
+/Tree\ structures
 
 # Compiled class file #
 *.class
