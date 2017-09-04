@@ -18,7 +18,7 @@ public class PrefiksDybdeBinTre{
             this.element = element;
         }
 
-        public void add(int newElement){
+        public void insert(int newElement){
             if (newElement < this.element){
                 if (left != null){
                     left.add(newElement);
@@ -34,26 +34,26 @@ public class PrefiksDybdeBinTre{
             }
         }
 
-        public int findElement(int searchElement, boolean remove){
+        public int search(int searchElement, boolean remove){
             if (this.element == searchElement){
                 if (remove){
-                    return this.removeElement();
+                    return this.remove();
                 }else{
-                    return this.element;
+                    return element;
                 }
             }else{
                 if (searchElement < this.element){
-                    return left.findElement(searchElement, remove);
+                    return left.search(searchElement, remove);
                 }else{
-                    return right.findElement(searchElement, remove);
+                    return right.search(searchElement, remove);
                 }
             }
         }
 
-        public int removeElement(){
+        public int remove(){
             if (left != null && right != null){
                 if (parent.getElement() < this.element){
-                    
+
                 }
 
             }else if (left != null && right == null){
