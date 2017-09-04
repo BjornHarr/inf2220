@@ -68,7 +68,7 @@ public class Tree{
                 }else{
                     left = new Node(newElement, this);
                 }
-            }else if (element.compareTo(newElement) < 0){
+            }else if (element.compareTo(newElement) > 0){
                 if (right != null){
                     right.add(newElement);
                 }else{
@@ -82,17 +82,15 @@ public class Tree{
         //Search Node
         public Node search(String searchElement){
             if (element.compareTo(searchElement) < 0){
-                if (left.getElement().equals(searchElement)){
-                    return left.search(searchElement);
-                }else{
-                    return this;
+                if (left == null){
+                    return null;
                 }
-            }else if (element.compareTo(searchElement) < 0){
-                if (right.getElement().equals(searchElement)){
-                    return right.search(searchElement);
-                }else{
-                    return this;
+                return left.search(searchElement);
+            }else if (element.compareTo(searchElement) > 0){
+                if (right == null){
+                    return null;
                 }
+                return right.search(searchElement);      
             }else{
                 return this;
             }
