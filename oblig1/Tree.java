@@ -14,31 +14,44 @@ public class Tree{
     }
 
     public String search(String searchElement){
-        return root.search(searchElement);
+        return (root != null ? root.search(searchElement) : null);
     }
 
-    public void statistics(){
+    public void statistics(int numOfElements){
         System.out.println("***************** Statistics *****************");
 
-        int depth = root.treeDepth(0);
-        System.out.println("Tree depth: " + depth);
-        System.out.println("----------------------------------------------");
+        //Nodes in each depth
+        ArrayList<Integer> nodesInDepth = new ArrayList<Integer>();
+        nodesInDepth.add(1);
+        nodesInDepth = root.nodesInEachDepth(new ArrayList<Integer>(), 1);
 
-        int[] nodesInDepth = root.nodesInEachDepth(depth+1);
-        for (int i = 0; i < nodesInDepth.length; i++){
-            System.out.println("Nodes in depth " + i + ": " + nodesInDepth[i]);
+        for (int i = 0; i < nodesInDepth.size(); i++){
+            System.out.println("Nodes in depth " + i + ": " + nodesInDepth.get(i));
         }
         System.out.println("----------------------------------------------");
 
-        int avrageDepth = root.avrageDepth();
-        System.out.println("Avrage depth is: " + avrageDepth);
+        //Tree depth
+        int depth = nodesInDepth.size() - 1;
+        System.out.println("Tree depth: " + depth);
         System.out.println("----------------------------------------------");
 
+        //Avrage depth
+        double avrageDepth = 0;
+        for (int i = 0; i < nodesInDepth.size(); i++){
+            avrageDepth += nodesInDepth.get(i) * i;
+        }
 
+        avrageDepth = avrageDepth / numOfElements;
+
+        System.out.printf("Avrage depth is: %2.2f\n", avrageDepth);
+        System.out.println("----------------------------------------------");
+
+        //First word
         String firstWord = root.firstWord();
         System.out.println("The alphabetically first word is: " + firstWord);
         System.out.println("----------------------------------------------");
 
+        //Last word
         String lastWord = root.lastWord();
         System.out.println("The alphabetically last  word is: " + lastWord);
 
@@ -70,7 +83,7 @@ public class Tree{
         return swaps;
     }
 
-    
+
 
     public static void main(String[] args)throws Exception{
         Scanner sc = new Scanner(new File("dictionary.txt"));
@@ -79,12 +92,15 @@ public class Tree{
 
         Tree tree = new Tree(firstElement);
 
+        int numOfElements = 1; // Var used in statistics()
+
         while(sc.hasNextLine()){
             String next = sc.nextLine();
             tree.add(next);
+            numOfElements++;
         }
 
-        tree.statistics();
+        tree.statistics(numOfElements);
 
         boolean run = true;
 
@@ -99,7 +115,7 @@ public class Tree{
             }else{
                 String hent = tree.search(in);
 
-                if (!hent.equals(null)){
+                if (hent.equals(in)){
                     System.out.println("Word found: " + hent + "\n");
                 }else{
                     ArrayList<String> swaps = tree.swapLetters(in);
@@ -174,43 +190,17 @@ public class Tree{
 //
 //  Statistics
 //
-
-        //Returns the depth of the tree : TODO
-        public int treeDepth(int rekDepth){
-            int leftDepth = (left != null ? left.treeDepth(rekDepth+1) : rekDepth);
-            int rightDepth = (right != null ? right.treeDepth(rekDepth+1) : rekDepth);
-
-            if (leftDepth > 0 && rightDepth > 0){
-                if (leftDepth < rightDepth){
-                    return rightDepth;
-                }else{
-                    return leftDepth;
-                }
-            }else if (leftDepth > 0 && rightDepth == 0){
-                return leftDepth;
-            }else if (leftDepth == 0 && rightDepth > 0){
-                return rightDepth;
+        public ArrayList<Integer> nodesInEachDepth(ArrayList<Integer> list, int currentDepth){
+            if (list.size() >= currentDepth){
+                list.set(currentDepth-1, list.get(currentDepth-1) + 1);
+            }else{
+                list.add(1);
             }
 
-            return 0;
-        }
+            list = (left != null ? left.nodesInEachDepth(list, currentDepth + 1) : list);
+            list = (right != null ? right.nodesInEachDepth(list, currentDepth + 1) : list);
 
-        //Returns number of nodes in each depth of the tree : TODO
-        public int[] nodesInEachDepth(int currentDepth){
-            int[] nodesInDepth = new int[currentDepth];
-
-            //TODO
-
-            return nodesInDepth;
-        }
-
-        //Returns the avrage depth of the tree : TODO
-        public int avrageDepth(){
-            int avrageDepth = 0;
-
-            //TODO
-
-            return avrageDepth;
+            return list;
         }
 
         //Returns the alphabetically first word
