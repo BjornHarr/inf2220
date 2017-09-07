@@ -59,9 +59,9 @@ public class Tree{
     }
 
 //
-//  Spellcheck
+//  Similar words
 //
-    //Returns an array of all possible ways a word can have, with two letters swapped
+    //Returns an ArrayList of all simlar words, by swapping two letters
     public ArrayList<String> swapLetters(String word){
         ArrayList<String> swaps = new ArrayList<String>();
 
@@ -83,7 +83,39 @@ public class Tree{
         return swaps;
     }
 
+    //Returns an ArrayList of all simlar words, by replacing one and one letters
+    public ArrayList<String> replaceLetters(String word){
+        ArrayList<String> possibilities = new ArrayList<String>();
 
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+
+        for(int i = 0; i < word.length(); i++){
+            for(int j = 0; j < alphabet.length; j++){
+                char[] tmpCharWord = word.toCharArray();
+                tmpCharWord[i] = alphabet[j];
+
+                String tmpWord = new String(tmpCharWord);
+
+                tmpWord = search(tmpWord);
+
+                if (tmpWord != null){
+                    possibilities.add(tmpWord);
+                }
+            }
+        }
+
+        return possibilities;
+    }
+
+    //Returns an ArrayList of all simlar words, by adding a letter in between
+    public ArrayList<String> addLetter(String word){
+        return new ArrayList<String>(); //TODO
+    }
+
+    //Returns an ArrayList of all simlar words, by removing one and one letter
+    public ArrayList<String> removeLetter(String word){
+        return new ArrayList<String>(); //TODO
+    }
 
     public static void main(String[] args)throws Exception{
         Scanner sc = new Scanner(new File("dictionary.txt"));
@@ -115,17 +147,21 @@ public class Tree{
             }else{
                 String hent = tree.search(in);
 
-                if (hent.equals(in)){
+                if (hent != null){
                     System.out.println("Word found: " + hent + "\n");
                 }else{
+                    System.out.println("---------------- Similar Words ---------------");
                     ArrayList<String> swaps = tree.swapLetters(in);
                     for(int i = 0; i < swaps.size(); i++){
                         System.out.println(swaps.get(i));
                     }
+                    ArrayList<String> replaces = tree.replaceLetters(in);
+                    for(int i = 0; i < replaces.size(); i++){
+                        System.out.println(replaces.get(i));
+                    }
                 }
             }
         }
-
         sc.close();
     }
 
@@ -141,10 +177,6 @@ public class Tree{
             this.element = element;
             this.parent = parent;
         }
-
-//
-//  Add and search methods
-//
 
         //Insert Node
         public void add(String newElement){
@@ -167,12 +199,12 @@ public class Tree{
 
         //Search Node
         public String search(String searchElement){
-            if (element.compareTo(searchElement) < 0){
+            if (element.compareTo(searchElement) > 0){
                 if (left == null){
                     return null;
                 }
                 return left.search(searchElement);
-            }else if (element.compareTo(searchElement) > 0){
+            }else if (element.compareTo(searchElement) < 0){
                 if (right == null){
                     return null;
                 }
@@ -186,10 +218,7 @@ public class Tree{
 
         //Delete Node : TODO
 
-
-//
-//  Statistics
-//
+        //Calculating number of nodes in each depth
         public ArrayList<Integer> nodesInEachDepth(ArrayList<Integer> list, int currentDepth){
             if (list.size() >= currentDepth){
                 list.set(currentDepth-1, list.get(currentDepth-1) + 1);
@@ -212,10 +241,6 @@ public class Tree{
         public String lastWord(){
             return (right == null ? element : right.lastWord());
         }
-
-//
-//  Getters
-//
 
         //Fetching the element outside of current Node
         public String getElement(){
