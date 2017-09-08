@@ -63,7 +63,7 @@ public class Tree{
 //
     //Returns an ArrayList of all simlar words, by swapping two letters
     public ArrayList<String> swapLetters(String word){
-        ArrayList<String> swaps = new ArrayList<String>();
+        ArrayList<String> possibilities = new ArrayList<String>();
 
         for(int i = 0; i < word.length()-1; i++){
             char[] swapWord = word.toCharArray();
@@ -75,11 +75,13 @@ public class Tree{
             String tmpWord = new String(swapWord);
 
             if (search(tmpWord) != null){
-                swaps.add(tmpWord);
+                if (!exists(possibilities, tmpWord)){
+                    possibilities.add(tmpWord);
+                }
             }
         }
 
-        return swaps;
+        return possibilities;
     }
 
     //Returns an ArrayList of all simlar words, by replacing one and one letters
@@ -98,7 +100,9 @@ public class Tree{
                 tmpWord = search(tmpWord);
 
                 if (tmpWord != null){
-                    possibilities.add(tmpWord);
+                    if (!exists(possibilities, tmpWord)){
+                        possibilities.add(tmpWord);
+                    }
                 }
             }
         }
@@ -110,30 +114,25 @@ public class Tree{
     public ArrayList<String> addLetter(String word){
         ArrayList<String> possibilities = new ArrayList<String>();
 
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
-        ArrayList<Character> listWord = new ArrayList<Character>();
-        for(int i = 0; i < word.length(); i++){
-            listWord.add(word.charAt(i));
-        }
-
         for(int i = 0; i <= word.length(); i++){
-            for(int j = 0; j < alphabet.length; j++){
-                ArrayList<Character> tmpWord = new ArrayList<Character>();
-                for (Character c : listWord){
-                    tmpWord.add(c);
+            for(char j = 'a'; j <= 'z'; j++){
+                ArrayList<Character> newWord = new ArrayList<Character>();
+                for (int k = 0; k < word.length(); k++){
+                    newWord.add(word.charAt(k));
                 }
 
-                tmpWord.add(i, alphabet[j]);
+                newWord.add(i, j);
 
-                StringBuilder sb = new StringBuilder(tmpWord.size());
-                for (char c : tmpWord){
+                StringBuilder sb = new StringBuilder(newWord.size());
+                for (char c : newWord){
                         sb.append(c);
                 }
 
                 String result = search(sb.toString());
                 if (result != null){
-                    possibilities.add(result);
+                    if (!exists(possibilities, result)){
+                        possibilities.add(result);
+                    }
                 }
             }
         }
@@ -142,16 +141,49 @@ public class Tree{
 
     //Returns an ArrayList of all simlar words, by removing one and one letter
     public ArrayList<String> removeLetter(String word){
-        return new ArrayList<String>(); //TODO
+        ArrayList<String> possibilities = new ArrayList<String>();
+
+        ArrayList<Character> listWord = new ArrayList<Character>();
+        for(int i = 0; i < word.length(); i++){
+            listWord.add(word.charAt(i));
+        }
+
+        for(int i = 0; i < word.length(); i++){
+            ArrayList<Character> tmpWord = new ArrayList<Character>();
+            for (Character c : listWord){
+                tmpWord.add(c);
+            }
+
+            tmpWord.remove(i);
+
+            StringBuilder sb = new StringBuilder(tmpWord.size());
+            for (char c : tmpWord){
+                    sb.append(c);
+            }
+
+            String result = search(sb.toString());
+            if (result != null){
+                if (!exists(possibilities, result)){
+                    possibilities.add(result);
+                }
+            }
+        }
+        return possibilities;
+    }
+
+    private boolean exists(ArrayList<String> list, String checkWord){
+        for (String s : list){
+            if (s.equals(checkWord)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args)throws Exception{
         Scanner sc = new Scanner(new File("dictionary.txt"));
-
         String firstElement = sc.nextLine();
-
         Tree tree = new Tree(firstElement);
-
         int numOfElements = 1; // Var used in statistics()
 
         while(sc.hasNextLine()){
@@ -180,20 +212,25 @@ public class Tree{
                     System.out.println("Word found: " + hent + "\n");
                 }else{
                     System.out.println("---------------- Similar Words ---------------");
-                    System.out.println("Swaps:");
                     ArrayList<String> swaps = tree.swapLetters(in);
+                    System.out.println("Swaps:");
                     for(int i = 0; i < swaps.size(); i++){
                         System.out.println(swaps.get(i));
                     }
-                    System.out.println("\nReplaces:");
                     ArrayList<String> replaces = tree.replaceLetters(in);
+                    System.out.println("\nReplaces:");
                     for(int i = 0; i < replaces.size(); i++){
                         System.out.println(replaces.get(i));
                     }
-                    System.out.println("\nAdd letters:");
                     ArrayList<String> addletter = tree.addLetter(in);
+                    System.out.println("\nAdd letters:");
                     for(int i = 0; i < addletter.size(); i++){
                         System.out.println(addletter.get(i));
+                    }
+                    ArrayList<String> removeLetter = tree.removeLetter(in);
+                    System.out.println("\nRemove letters:");
+                    for(int i = 0; i < removeLetter.size(); i++){
+                        System.out.println(removeLetter.get(i));
                     }
                 }
             }
@@ -235,18 +272,15 @@ public class Tree{
 
         //Search Node
         public String search(String searchElement){
-            if (element.compareTo(searchElement) > 0){
-                if (left == null){
-                    return null;
-                }
+            if (left != null && element.compareTo(searchElement) > 0){
                 return left.search(searchElement);
-            }else if (element.compareTo(searchElement) < 0){
-                if (right == null){
-                    return null;
-                }
+
+            }else if (right != null && element.compareTo(searchElement) < 0){
                 return right.search(searchElement);
+
             }else if (element.compareTo(searchElement) == 0){
                 return this.element;
+
             }else{
                 return null;
             }
@@ -276,11 +310,6 @@ public class Tree{
         //Returns the alphabetically last word
         public String lastWord(){
             return (right == null ? element : right.lastWord());
-        }
-
-        //Fetching the element outside of current Node
-        public String getElement(){
-            return this.element;
         }
     }
 }
