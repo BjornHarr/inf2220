@@ -65,13 +65,12 @@ public class Tree{
     public ArrayList<String> swapLetters(String word){
         ArrayList<String> swaps = new ArrayList<String>();
 
-        char[] charWord = word.toCharArray();
-
         for(int i = 0; i < word.length()-1; i++){
-            char[] swapWord = charWord;
-            char tmpChar = swapWord[i+1];
-            swapWord[i+1] = swapWord[i];
-            swapWord[i] = tmpChar;
+            char[] swapWord = word.toCharArray();
+
+            char tmpChar = swapWord[i];
+            swapWord[i] = swapWord[i+1];
+            swapWord[i+1] = tmpChar;
 
             String tmpWord = new String(swapWord);
 
@@ -109,7 +108,36 @@ public class Tree{
 
     //Returns an ArrayList of all simlar words, by adding a letter in between
     public ArrayList<String> addLetter(String word){
-        return new ArrayList<String>(); //TODO
+        ArrayList<String> possibilities = new ArrayList<String>();
+
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+
+        ArrayList<Character> listWord = new ArrayList<Character>();
+        for(int i = 0; i < word.length(); i++){
+            listWord.add(word.charAt(i));
+        }
+
+        for(int i = 0; i <= word.length(); i++){
+            for(int j = 0; j < alphabet.length; j++){
+                ArrayList<Character> tmpWord = new ArrayList<Character>();
+                for (Character c : listWord){
+                    tmpWord.add(c);
+                }
+
+                tmpWord.add(i, alphabet[j]);
+
+                StringBuilder sb = new StringBuilder(tmpWord.size());
+                for (char c : tmpWord){
+                        sb.append(c);
+                }
+
+                String result = search(sb.toString());
+                if (result != null){
+                    possibilities.add(result);
+                }
+            }
+        }
+        return possibilities;
     }
 
     //Returns an ArrayList of all simlar words, by removing one and one letter
@@ -137,7 +165,8 @@ public class Tree{
         boolean run = true;
 
         while(run){
-            System.out.println("Input search word? (q to exit)");
+            System.out.println("----------------------------------------------");
+            System.out.println("\nInput search word? (q to exit)");
             sc = new Scanner(System.in);
             String in = sc.nextLine();
             in = in.toLowerCase();
@@ -151,13 +180,20 @@ public class Tree{
                     System.out.println("Word found: " + hent + "\n");
                 }else{
                     System.out.println("---------------- Similar Words ---------------");
+                    System.out.println("Swaps:");
                     ArrayList<String> swaps = tree.swapLetters(in);
                     for(int i = 0; i < swaps.size(); i++){
                         System.out.println(swaps.get(i));
                     }
+                    System.out.println("\nReplaces:");
                     ArrayList<String> replaces = tree.replaceLetters(in);
                     for(int i = 0; i < replaces.size(); i++){
                         System.out.println(replaces.get(i));
+                    }
+                    System.out.println("\nAdd letters:");
+                    ArrayList<String> addletter = tree.addLetter(in);
+                    for(int i = 0; i < addletter.size(); i++){
+                        System.out.println(addletter.get(i));
                     }
                 }
             }
