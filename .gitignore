@@ -1,10 +1,11 @@
-# Other files #
+# Files types #
 *.pages
 *.pdf
 
-# Folders #
-Weekly\ tasks
-Tree\ structures
+# Specific files #
+*/README.txt
+oblig1/utskrift.txt
+oblig1/dictionary.txt
 
 # Compiled class file #
 *.class

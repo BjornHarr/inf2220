@@ -18,7 +18,7 @@ public class Tree{
     }
 
     public void statistics(int numOfElements){
-        System.out.println("***************** Statistics *****************");
+        System.out.println("\n***************** Statistics *****************\n");
 
         //Nodes in each depth
         ArrayList<Integer> nodesInDepth = new ArrayList<Integer>();
@@ -55,7 +55,7 @@ public class Tree{
         String lastWord = root.lastWord();
         System.out.println("The alphabetically last  word is: " + lastWord);
 
-        System.out.println("*************** End Statistics ***************");
+        System.out.println("\n*************** End Statistics ***************\n");
     }
 
 //
@@ -88,16 +88,12 @@ public class Tree{
     public ArrayList<String> replaceLetters(String word){
         ArrayList<String> possibilities = new ArrayList<String>();
 
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
         for(int i = 0; i < word.length(); i++){
-            for(int j = 0; j < alphabet.length; j++){
+            for(char j = 'a'; j < 'z'; j++){
                 char[] tmpCharWord = word.toCharArray();
-                tmpCharWord[i] = alphabet[j];
+                tmpCharWord[i] = j;
 
-                String tmpWord = new String(tmpCharWord);
-
-                tmpWord = search(tmpWord);
+                String tmpWord = search(new String(tmpCharWord));
 
                 if (tmpWord != null){
                     if (!exists(possibilities, tmpWord)){
@@ -111,7 +107,7 @@ public class Tree{
     }
 
     //Returns an ArrayList of all simlar words, by adding a letter in between
-    public ArrayList<String> addLetter(String word){
+    public ArrayList<String> addLetters(String word){
         ArrayList<String> possibilities = new ArrayList<String>();
 
         for(int i = 0; i <= word.length(); i++){
@@ -129,6 +125,7 @@ public class Tree{
                 }
 
                 String result = search(sb.toString());
+
                 if (result != null){
                     if (!exists(possibilities, result)){
                         possibilities.add(result);
@@ -140,7 +137,7 @@ public class Tree{
     }
 
     //Returns an ArrayList of all simlar words, by removing one and one letter
-    public ArrayList<String> removeLetter(String word){
+    public ArrayList<String> removeLetters(String word){
         ArrayList<String> possibilities = new ArrayList<String>();
 
         ArrayList<Character> listWord = new ArrayList<Character>();
@@ -171,6 +168,7 @@ public class Tree{
         return possibilities;
     }
 
+    //Checks if an element allready exists in the given ArrayList
     private boolean exists(ArrayList<String> list, String checkWord){
         for (String s : list){
             if (s.equals(checkWord)){
@@ -198,7 +196,7 @@ public class Tree{
 
         while(run){
             System.out.println("----------------------------------------------");
-            System.out.println("\nInput search word? (q to exit)");
+            System.out.println("\nInput search word ('q' to exit)\n");
             sc = new Scanner(System.in);
             String in = sc.nextLine();
             in = in.toLowerCase();
@@ -212,26 +210,36 @@ public class Tree{
                     System.out.println("Word found: " + hent + "\n");
                 }else{
                     System.out.println("---------------- Similar Words ---------------");
-                    ArrayList<String> swaps = tree.swapLetters(in);
-                    System.out.println("Swaps:");
-                    for(int i = 0; i < swaps.size(); i++){
-                        System.out.println(swaps.get(i));
+                    ArrayList<String> swapLetters = tree.swapLetters(in);
+                    if (swapLetters.size() > 0){
+                        System.out.println("Swaped letters:");
+                        for(int i = 0; i < swapLetters.size(); i++){
+                            System.out.println(swapLetters.get(i));
+                        }
                     }
-                    ArrayList<String> replaces = tree.replaceLetters(in);
-                    System.out.println("\nReplaces:");
-                    for(int i = 0; i < replaces.size(); i++){
-                        System.out.println(replaces.get(i));
+                    ArrayList<String> replaceLetter = tree.replaceLetters(in);
+                    if (replaceLetter.size() > 0){
+                        System.out.println("\nReplaced letters:");
+                        for(int i = 0; i < replaceLetter.size(); i++){
+                            System.out.println(replaceLetter.get(i));
+                        }
                     }
-                    ArrayList<String> addletter = tree.addLetter(in);
-                    System.out.println("\nAdd letters:");
-                    for(int i = 0; i < addletter.size(); i++){
-                        System.out.println(addletter.get(i));
+                    ArrayList<String> addLetter = tree.addLetters(in);
+                    if (addLetter.size() > 0){
+                        System.out.println("\nAdded letters:");
+                        for(int i = 0; i < addLetter.size(); i++){
+                            System.out.println(addLetter.get(i));
+
+                        }
                     }
-                    ArrayList<String> removeLetter = tree.removeLetter(in);
-                    System.out.println("\nRemove letters:");
-                    for(int i = 0; i < removeLetter.size(); i++){
-                        System.out.println(removeLetter.get(i));
+                    ArrayList<String> removeLetter = tree.removeLetters(in);
+                    if (removeLetter.size() > 0){
+                        System.out.println("\nRemoved letters:");
+                        for(int i = 0; i < removeLetter.size(); i++){
+                            System.out.println(removeLetter.get(i));
+                        }
                     }
+                    System.out.println(); //For a prettier UI
                 }
             }
         }
@@ -285,8 +293,6 @@ public class Tree{
                 return null;
             }
         }
-
-        //Delete Node : TODO
 
         //Calculating number of nodes in each depth
         public ArrayList<Integer> nodesInEachDepth(ArrayList<Integer> list, int currentDepth){
