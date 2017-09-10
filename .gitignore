@@ -20,6 +20,7 @@ oblig1/dictionary.txt
 .mtj.tmp/
 
 # Package Files #
+*.tgz
 *.jar
 *.war
 *.ear
