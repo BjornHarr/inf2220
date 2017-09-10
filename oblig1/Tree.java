@@ -190,60 +190,57 @@ public class Tree{
             numOfElements++;
         }
 
-        tree.statistics(numOfElements);
-
         boolean run = true;
+        sc = new Scanner(System.in);
 
-        while(run){
+        System.out.println("\nInput search word ('q' to exit)\n");
+        String in = sc.nextLine();
+        in = in.toLowerCase();
+
+        while(!in.equals("q")){
+            String hent = tree.search(in);
+
+            if (hent != null){
+                System.out.println("Word found: " + hent + "\n");
+            }else{
+                System.out.println("---------------- Similar Words ---------------");
+                ArrayList<String> swapLetters = tree.swapLetters(in);
+                if (swapLetters.size() > 0){
+                    System.out.println("Swaped letters:");
+                    for(int i = 0; i < swapLetters.size(); i++){
+                        System.out.println(swapLetters.get(i));
+                    }
+                }
+                ArrayList<String> replaceLetter = tree.replaceLetters(in);
+                if (replaceLetter.size() > 0){
+                    System.out.println("\nReplaced letters:");
+                    for(int i = 0; i < replaceLetter.size(); i++){
+                        System.out.println(replaceLetter.get(i));
+                    }
+                }
+                ArrayList<String> addLetter = tree.addLetters(in);
+                if (addLetter.size() > 0){
+                    System.out.println("\nAdded letters:");
+                    for(int i = 0; i < addLetter.size(); i++){
+                        System.out.println(addLetter.get(i));
+                    }
+                }
+                ArrayList<String> removeLetter = tree.removeLetters(in);
+                if (removeLetter.size() > 0){
+                    System.out.println("\nRemoved letters:");
+                    for(int i = 0; i < removeLetter.size(); i++){
+                        System.out.println(removeLetter.get(i));
+                    }
+                }
+                System.out.println(); //For a prettier UI
+            }
+
             System.out.println("----------------------------------------------");
             System.out.println("\nInput search word ('q' to exit)\n");
-            sc = new Scanner(System.in);
-            String in = sc.nextLine();
+            in = sc.nextLine();
             in = in.toLowerCase();
-
-            if (in.equals("q")){
-                run = false;
-            }else{
-                String hent = tree.search(in);
-
-                if (hent != null){
-                    System.out.println("Word found: " + hent + "\n");
-                }else{
-                    System.out.println("---------------- Similar Words ---------------");
-                    ArrayList<String> swapLetters = tree.swapLetters(in);
-                    if (swapLetters.size() > 0){
-                        System.out.println("Swaped letters:");
-                        for(int i = 0; i < swapLetters.size(); i++){
-                            System.out.println(swapLetters.get(i));
-                        }
-                    }
-                    ArrayList<String> replaceLetter = tree.replaceLetters(in);
-                    if (replaceLetter.size() > 0){
-                        System.out.println("\nReplaced letters:");
-                        for(int i = 0; i < replaceLetter.size(); i++){
-                            System.out.println(replaceLetter.get(i));
-                        }
-                    }
-                    ArrayList<String> addLetter = tree.addLetters(in);
-                    if (addLetter.size() > 0){
-                        System.out.println("\nAdded letters:");
-                        for(int i = 0; i < addLetter.size(); i++){
-                            System.out.println(addLetter.get(i));
-
-                        }
-                    }
-                    ArrayList<String> removeLetter = tree.removeLetters(in);
-                    if (removeLetter.size() > 0){
-                        System.out.println("\nRemoved letters:");
-                        for(int i = 0; i < removeLetter.size(); i++){
-                            System.out.println(removeLetter.get(i));
-                        }
-                    }
-                    System.out.println(); //For a prettier UI
-                }
-            }
         }
-        sc.close();
+        tree.statistics(numOfElements);
     }
 
     public class Node{
