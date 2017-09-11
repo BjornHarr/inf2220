@@ -72,12 +72,9 @@ public class Tree{
             swapWord[i] = swapWord[i+1];
             swapWord[i+1] = tmpChar;
 
-            String tmpWord = new String(swapWord);
-
-            if (search(tmpWord) != null){
-                if (!exists(possibilities, tmpWord)){
-                    possibilities.add(tmpWord);
-                }
+            String result = search(new String(swapWord));
+            if (result != null && !possibilities.contains(result)){
+                possibilities.add(result);
             }
         }
 
@@ -93,12 +90,9 @@ public class Tree{
                 char[] tmpCharWord = word.toCharArray();
                 tmpCharWord[i] = j;
 
-                String tmpWord = search(new String(tmpCharWord));
-
-                if (tmpWord != null){
-                    if (!exists(possibilities, tmpWord)){
-                        possibilities.add(tmpWord);
-                    }
+                String result = search(new String(tmpCharWord));
+                if (result != null && !possibilities.contains(result)){
+                    possibilities.add(result);
                 }
             }
         }
@@ -116,7 +110,7 @@ public class Tree{
                 for (int k = 0; k < word.length(); k++){
                     newWord.add(word.charAt(k));
                 }
-
+                
                 newWord.add(i, j);
 
                 StringBuilder sb = new StringBuilder(newWord.size());
@@ -125,14 +119,12 @@ public class Tree{
                 }
 
                 String result = search(sb.toString());
-
-                if (result != null){
-                    if (!exists(possibilities, result)){
-                        possibilities.add(result);
-                    }
+                if (result != null && !possibilities.contains(result)){
+                    possibilities.add(result);
                 }
             }
         }
+
         return possibilities;
     }
 
@@ -159,23 +151,11 @@ public class Tree{
             }
 
             String result = search(sb.toString());
-            if (result != null){
-                if (!exists(possibilities, result)){
-                    possibilities.add(result);
-                }
+            if (result != null && !possibilities.contains(result)){
+                possibilities.add(result);
             }
         }
         return possibilities;
-    }
-
-    //Checks if an element allready exists in the given ArrayList
-    private boolean exists(ArrayList<String> list, String checkWord){
-        for (String s : list){
-            if (s.equals(checkWord)){
-                return true;
-            }
-        }
-        return false;
     }
 
     public static void main(String[] args)throws Exception{
