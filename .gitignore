@@ -1,6 +1,7 @@
 # Files types #
 *.pages
 *.pdf
+*.tgz
 
 # Specific files #
 */README.txt
@@ -9,6 +10,9 @@ oblig1/dictionary.txt
 
 # Compiled class file #
 *.class
+
+# Folders #
+UkesOppgaver
 
 # Log file #
 *.log
@@ -20,7 +24,6 @@ oblig1/dictionary.txt
 .mtj.tmp/
 
 # Package Files #
-*.tgz
 *.jar
 *.war
 *.ear
