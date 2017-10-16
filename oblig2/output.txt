@@ -1,0 +1,890 @@
+**********************************
+**** buildrail.txt ***************
+**********************************
+
+-------------- INFO --------------
+ID: 1
+Name: Install-pavement
+Time: 20
+Staff: 10
+Earliest Start: 186
+Latest Start: 193
+Slack: 7
+
+
+ID: 2
+Name: Install-railing
+Time: 7
+Staff: 10
+Earliest Start: 5
+Latest Start: 38
+Slack: 33
+
+
+ID: 3
+Name: Install-ticketmachine
+Time: 1
+Staff: 10
+Earliest Start: 63
+Latest Start: 87
+Slack: 24
+
+
+ID: 4
+Name: Paint-tower-1-with-arch
+Time: 15
+Staff: 6
+Earliest Start: 119
+Latest Start: 129
+Slack: 10
+
+
+ID: 5
+Name: Paint-tower-2
+Time: 12
+Staff: 6
+Earliest Start: 124
+Latest Start: 137
+Slack: 13
+
+
+ID: 6
+Name: Paint-trusses
+Time: 27
+Staff: 6
+Earliest Start: 186
+Latest Start: 186
+Slack: 0
+
+
+ID: 7
+Name: Paint-cables-and-rods
+Time: 18
+Staff: 6
+Earliest Start: 186
+Latest Start: 195
+Slack: 9
+
+
+ID: 8
+Name: Put-lane-tunnel-and-intersection
+Time: 12
+Staff: 7
+Earliest Start: 51
+Latest Start: 99
+Slack: 48
+Successor: 3, 31
+
+ID: 9
+Name: Setup-barrack
+Time: 3
+Staff: 10
+Earliest Start: 0
+Latest Start: 0
+Slack: 0
+Successor: 10, 11, 12, 14, 16, 17
+
+ID: 10
+Name: Prepare-storage
+Time: 2
+Staff: 4
+Earliest Start: 3
+Latest Start: 46
+Slack: 43
+Successor: 2
+
+ID: 11
+Name: Rig-ramspace-reinforcing
+Time: 1
+Staff: 4
+Earliest Start: 3
+Latest Start: 47
+Slack: 44
+Successor: 18, 19, 20
+
+ID: 12
+Name: Build-tunnel
+Time: 30
+Staff: 12
+Earliest Start: 3
+Latest Start: 18
+Slack: 15
+Successor: 13
+
+ID: 13
+Name: Clean-tunnel
+Time: 18
+Staff: 12
+Earliest Start: 33
+Latest Start: 55
+Slack: 22
+Successor: 8
+
+ID: 14
+Name: Build-intersection
+Time: 25
+Staff: 12
+Earliest Start: 3
+Latest Start: 23
+Slack: 20
+Successor: 15
+
+ID: 15
+Name: Clean-intersection
+Time: 20
+Staff: 12
+Earliest Start: 28
+Latest Start: 48
+Slack: 20
+Successor: 8
+
+ID: 16
+Name: Build-towerfoundation-1
+Time: 35
+Staff: 12
+Earliest Start: 3
+Latest Start: 13
+Slack: 10
+Successor: 21
+
+ID: 17
+Name: Build-towerfoundation-2
+Time: 45
+Staff: 12
+Earliest Start: 3
+Latest Start: 3
+Slack: 0
+Successor: 22
+
+ID: 18
+Name: Make-armouring-tower-1
+Time: 40
+Staff: 4
+Earliest Start: 4
+Latest Start: 4
+Slack: 0
+Successor: 21
+
+ID: 19
+Name: Make-armouring-tower-2
+Time: 25
+Staff: 4
+Earliest Start: 4
+Latest Start: 19
+Slack: 15
+Successor: 22
+
+ID: 20
+Name: Make-armouring-arch
+Time: 12
+Staff: 4
+Earliest Start: 4
+Latest Start: 32
+Slack: 28
+Successor: 23
+
+ID: 21
+Name: Encase-and-armour-tower-1
+Time: 15
+Staff: 5
+Earliest Start: 44
+Latest Start: 69
+Slack: 25
+Successor: 24
+
+ID: 22
+Name: Encase-and-armour-tower-2
+Time: 16
+Staff: 5
+Earliest Start: 48
+Latest Start: 72
+Slack: 24
+Successor: 25
+
+ID: 23
+Name: Encase-and-armour-arch
+Time: 30
+Staff: 5
+Earliest Start: 16
+Latest Start: 46
+Slack: 30
+Successor: 26
+
+ID: 24
+Name: Cast-tower-1
+Time: 60
+Staff: 7
+Earliest Start: 59
+Latest Start: 59
+Slack: 0
+Successor: 4, 27
+
+ID: 25
+Name: Cast-tower-2
+Time: 60
+Staff: 7
+Earliest Start: 64
+Latest Start: 64
+Slack: 0
+Successor: 5, 27
+
+ID: 26
+Name: Cast-arch
+Time: 20
+Staff: 7
+Earliest Start: 46
+Latest Start: 51
+Slack: 5
+Successor: 31
+
+ID: 27
+Name: Stretch-two-maincables
+Time: 25
+Staff: 10
+Earliest Start: 124
+Latest Start: 124
+Slack: 0
+Successor: 28, 29
+
+ID: 28
+Name: Build-truss-1-with-rods
+Time: 30
+Staff: 10
+Earliest Start: 149
+Latest Start: 156
+Slack: 7
+Successor: 1, 6, 7, 30
+
+ID: 29
+Name: Build-truss-2-with-rods
+Time: 37
+Staff: 10
+Earliest Start: 149
+Latest Start: 149
+Slack: 0
+Successor: 1, 6, 7, 30
+
+ID: 30
+Name: Cast-lane-on-truss
+Time: 20
+Staff: 7
+Earliest Start: 186
+Latest Start: 193
+Slack: 7
+Successor: 31
+
+ID: 31
+Name: Polish-lane-on-arch
+Time: 12
+Staff: 7
+Earliest Start: 206
+Latest Start: 206
+Slack: 0
+
+
+----- Optimal run time: 218 ------
+
+  Time 0:
+       Starting: 9
+  Current staff: 10
+
+  Time 3:
+       Finished: 9
+       Starting: 10
+       Starting: 11
+       Starting: 12
+       Starting: 14
+       Starting: 16
+       Starting: 17
+  Current staff: 56
+
+  Time 4:
+       Finished: 11
+       Starting: 18
+       Starting: 19
+       Starting: 20
+  Current staff: 64
+
+  Time 5:
+       Starting: 2
+       Finished: 10
+  Current staff: 70
+
+  Time 12:
+       Finished: 2
+  Current staff: 60
+
+  Time 16:
+       Finished: 20
+       Starting: 23
+  Current staff: 61
+
+  Time 28:
+       Finished: 14
+       Starting: 15
+  Current staff: 61
+
+  Time 29:
+       Finished: 19
+  Current staff: 57
+
+  Time 33:
+       Finished: 12
+       Starting: 13
+  Current staff: 57
+
+  Time 38:
+       Finished: 16
+  Current staff: 45
+
+  Time 44:
+       Finished: 18
+       Starting: 21
+  Current staff: 46
+
+  Time 46:
+       Finished: 23
+       Starting: 26
+  Current staff: 48
+
+  Time 48:
+       Finished: 15
+       Finished: 17
+       Starting: 22
+  Current staff: 29
+
+  Time 51:
+       Starting: 8
+       Finished: 13
+  Current staff: 24
+
+  Time 59:
+       Finished: 21
+       Starting: 24
+  Current staff: 26
+
+  Time 63:
+       Starting: 3
+       Finished: 8
+  Current staff: 29
+
+  Time 64:
+       Finished: 3
+       Finished: 22
+       Starting: 25
+  Current staff: 21
+
+  Time 66:
+       Finished: 26
+  Current staff: 14
+
+  Time 100:
+  Current staff: 14
+
+  Time 101:
+  Current staff: 14
+
+  Time 102:
+  Current staff: 14
+
+  Time 103:
+  Current staff: 14
+
+  Time 104:
+  Current staff: 14
+
+  Time 105:
+  Current staff: 14
+
+  Time 106:
+  Current staff: 14
+
+  Time 107:
+  Current staff: 14
+
+  Time 108:
+  Current staff: 14
+
+  Time 109:
+  Current staff: 14
+
+  Time 110:
+  Current staff: 14
+
+  Time 111:
+  Current staff: 14
+
+  Time 112:
+  Current staff: 14
+
+  Time 113:
+  Current staff: 14
+
+  Time 114:
+  Current staff: 14
+
+  Time 115:
+  Current staff: 14
+
+  Time 116:
+  Current staff: 14
+
+  Time 117:
+  Current staff: 14
+
+  Time 118:
+  Current staff: 14
+
+  Time 119:
+       Starting: 4
+       Finished: 24
+  Current staff: 13
+
+  Time 120:
+  Current staff: 13
+
+  Time 121:
+  Current staff: 13
+
+  Time 122:
+  Current staff: 13
+
+  Time 123:
+  Current staff: 13
+
+  Time 124:
+       Starting: 5
+       Finished: 25
+       Starting: 27
+  Current staff: 22
+
+  Time 125:
+  Current staff: 22
+
+  Time 126:
+  Current staff: 22
+
+  Time 127:
+  Current staff: 22
+
+  Time 128:
+  Current staff: 22
+
+  Time 129:
+  Current staff: 22
+
+  Time 130:
+  Current staff: 22
+
+  Time 131:
+  Current staff: 22
+
+  Time 132:
+  Current staff: 22
+
+  Time 133:
+  Current staff: 22
+
+  Time 134:
+       Finished: 4
+  Current staff: 16
+
+  Time 135:
+  Current staff: 16
+
+  Time 136:
+       Finished: 5
+  Current staff: 10
+
+  Time 137:
+  Current staff: 10
+
+  Time 138:
+  Current staff: 10
+
+  Time 139:
+  Current staff: 10
+
+  Time 140:
+  Current staff: 10
+
+  Time 141:
+  Current staff: 10
+
+  Time 142:
+  Current staff: 10
+
+  Time 143:
+  Current staff: 10
+
+  Time 144:
+  Current staff: 10
+
+  Time 145:
+  Current staff: 10
+
+  Time 146:
+  Current staff: 10
+
+  Time 147:
+  Current staff: 10
+
+  Time 148:
+  Current staff: 10
+
+  Time 149:
+       Finished: 27
+       Starting: 28
+       Starting: 29
+  Current staff: 20
+
+  Time 150:
+  Current staff: 20
+
+  Time 151:
+  Current staff: 20
+
+  Time 152:
+  Current staff: 20
+
+  Time 153:
+  Current staff: 20
+
+  Time 154:
+  Current staff: 20
+
+  Time 155:
+  Current staff: 20
+
+  Time 156:
+  Current staff: 20
+
+  Time 157:
+  Current staff: 20
+
+  Time 158:
+  Current staff: 20
+
+  Time 159:
+  Current staff: 20
+
+  Time 160:
+  Current staff: 20
+
+  Time 161:
+  Current staff: 20
+
+  Time 162:
+  Current staff: 20
+
+  Time 163:
+  Current staff: 20
+
+  Time 164:
+  Current staff: 20
+
+  Time 165:
+  Current staff: 20
+
+  Time 166:
+  Current staff: 20
+
+  Time 167:
+  Current staff: 20
+
+  Time 168:
+  Current staff: 20
+
+  Time 169:
+  Current staff: 20
+
+  Time 170:
+  Current staff: 20
+
+  Time 171:
+  Current staff: 20
+
+  Time 172:
+  Current staff: 20
+
+  Time 173:
+  Current staff: 20
+
+  Time 174:
+  Current staff: 20
+
+  Time 175:
+  Current staff: 20
+
+  Time 176:
+  Current staff: 20
+
+  Time 177:
+  Current staff: 20
+
+  Time 178:
+  Current staff: 20
+
+  Time 179:
+       Finished: 28
+  Current staff: 10
+
+  Time 180:
+  Current staff: 10
+
+  Time 181:
+  Current staff: 10
+
+  Time 182:
+  Current staff: 10
+
+  Time 183:
+  Current staff: 10
+
+  Time 184:
+  Current staff: 10
+
+  Time 185:
+  Current staff: 10
+
+  Time 186:
+       Starting: 1
+       Starting: 6
+       Starting: 7
+       Finished: 29
+       Starting: 30
+  Current staff: 29
+
+  Time 187:
+  Current staff: 29
+
+  Time 188:
+  Current staff: 29
+
+  Time 189:
+  Current staff: 29
+
+  Time 190:
+  Current staff: 29
+
+  Time 191:
+  Current staff: 29
+
+  Time 192:
+  Current staff: 29
+
+  Time 193:
+  Current staff: 29
+
+  Time 194:
+  Current staff: 29
+
+  Time 195:
+  Current staff: 29
+
+  Time 196:
+  Current staff: 29
+
+  Time 197:
+  Current staff: 29
+
+  Time 198:
+  Current staff: 29
+
+  Time 199:
+  Current staff: 29
+
+  Time 200:
+  Current staff: 29
+
+  Time 201:
+  Current staff: 29
+
+  Time 202:
+  Current staff: 29
+
+  Time 203:
+  Current staff: 29
+
+  Time 204:
+       Finished: 7
+  Current staff: 23
+
+  Time 205:
+  Current staff: 23
+
+  Time 206:
+       Finished: 1
+       Finished: 30
+       Starting: 31
+  Current staff: 13
+
+  Time 207:
+  Current staff: 13
+
+  Time 208:
+  Current staff: 13
+
+  Time 209:
+  Current staff: 13
+
+  Time 210:
+  Current staff: 13
+
+  Time 211:
+  Current staff: 13
+
+  Time 212:
+  Current staff: 13
+
+  Time 213:
+       Finished: 6
+  Current staff: 7
+
+  Time 214:
+  Current staff: 7
+
+  Time 215:
+  Current staff: 7
+
+  Time 216:
+  Current staff: 7
+
+  Time 217:
+  Current staff: 7
+
+  Time 218:
+       Finished: 31
+  Current staff: 0
+
+---------------------------------
+
+**********************************
+**** buildhouse1.txt *************
+**********************************
+
+-------------- INFO --------------
+ID: 1
+Name: Build-walls
+Time: 4
+Staff: 2
+Earliest Start: 4
+Latest Start: 4
+Slack: 0
+Successor: 2, 3
+
+ID: 2
+Name: Build-roofs
+Time: 6
+Staff: 4
+Earliest Start: 8
+Latest Start: 8
+Slack: 0
+Successor: 3, 4, 7
+
+ID: 3
+Name: Put-on-wallpapers
+Time: 1
+Staff: 2
+Earliest Start: 14
+Latest Start: 19
+Slack: 5
+Successor: 8
+
+ID: 4
+Name: Put-on-tiles
+Time: 1
+Staff: 3
+Earliest Start: 14
+Latest Start: 17
+Slack: 3
+
+
+ID: 5
+Name: Build-foundation
+Time: 4
+Staff: 2
+Earliest Start: 0
+Latest Start: 0
+Slack: 0
+Successor: 1, 6
+
+ID: 6
+Name: Make-floor
+Time: 2
+Staff: 2
+Earliest Start: 4
+Latest Start: 6
+Slack: 2
+Successor: 7
+
+ID: 7
+Name: Put-carpet-floor
+Time: 4
+Staff: 2
+Earliest Start: 14
+Latest Start: 16
+Slack: 2
+Successor: 8
+
+ID: 8
+Name: Move-in
+Time: 4
+Staff: 4
+Earliest Start: 18
+Latest Start: 18
+Slack: 0
+
+
+----- Optimal run time: 22 ------
+
+  Time 0:
+       Starting: 5
+  Current staff: 2
+
+  Time 4:
+       Starting: 1
+       Finished: 5
+       Starting: 6
+  Current staff: 4
+
+  Time 6:
+       Finished: 6
+  Current staff: 2
+
+  Time 8:
+       Finished: 1
+       Starting: 2
+  Current staff: 4
+
+  Time 14:
+       Finished: 2
+       Starting: 3
+       Starting: 4
+       Starting: 7
+  Current staff: 7
+
+  Time 15:
+       Finished: 3
+       Finished: 4
+  Current staff: 2
+
+  Time 18:
+       Finished: 7
+       Starting: 8
+  Current staff: 4
+
+  Time 22:
+       Finished: 8
+  Current staff: 0
+
+---------------------------------
+
+**********************************
+**** buildhouse2.txt *************
+**********************************
+
+The plan is NOT realizable
+Cycle(0): 6 3 2 1
+Cycle(1): 6 3 1
+Cycle(2): 3 2 1 6

@@ -1,0 +1,13 @@
+- I disse antakelsene av kjoretid tar jeg ikke utgangspunkt
+  i kjoretiden til innebygde metoder til importerte bibliotek
+
+- Metodene som inngaar i disse kallene tas med i beregningen.
+
+- Jeg skriver ikke parameterene i metodenavnene
+
+- newTask()             -> O(1)       -> Metoden i seg selv er O(1), men metoden kalles |V| ganger, som forer til O(|V|)
+- setDependencies()     -> O(|V|^(2)) -> Antallet Tasks gatt gjennom, multiplisert med antallet utkanter. (Dobbel for)
+- realizable()          -> O(|V|^(2)) -> Antallet Tasks gatt gjennom, multiplisert med antallet utkanter. (Dobbel for)
+- setEarliestStart()    -> O(|V|^(2)) -> Antallet Tasks gatt gjennom, multiplisert med antallet utkanter. (Dobbel for)
+- setSlack()            -> O(|V|^(2)) -> Tiden er antallet tasks gaatt gjennom antall tasks ganger.
+- optimalTime()         -> O(|V|^(2)) -> Antallet Tasks gatt gjennom, multiplisert med antallet utkanter. (Dobbel for)
