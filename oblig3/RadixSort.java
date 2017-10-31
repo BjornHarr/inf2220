@@ -3,10 +3,8 @@ import java.util.Arrays;
 public class RadixSort{
     /** Sorter  a[] stigende - antar at: 0 <= a[i] < 2^(32) , returner tid i milliSek */
 
-    final static int NUM_BIT = 7; // eller: 6 - 13 (Finn ut hva som er raskest)
+    final static int NUM_BIT = 8; // eller: 6 - 13 (Finn ut hva som er raskest)
     final static int MIN_NUM = 31; // 16 - 60 , quicksort bruker 47
-    private int rekursjoner = 0;
-    private int innstikksorteringer = 0;
 
     public double vRadixMulti(int[] a){
         long t = System.nanoTime();
@@ -26,14 +24,11 @@ public class RadixSort{
         while (max >= (1 << numBit)) numBit++;
 
         // c) Forste kall (rot-kallet) paa venstreRadix med a[], b[], numBit og lengden av forste siffer
-
         if (numBit < NUM_BIT) {
-            System.out.println(numBit + " < " + NUM_BIT);
             venstreRadix(a, b, 0, a.length, numBit, numBit);
         } else {
             venstreRadix(a, b, 0, a.length, numBit, NUM_BIT);
         }
-
 
         // Passer paa at det mest sorterte arrayet er i a
         int aVal = a[0];
@@ -50,9 +45,6 @@ public class RadixSort{
 
         double tid = (System.nanoTime() - t)/1000000.0;
         testSort(a);
-
-        // System.out.println("Rekursjoner: " + rekursjoner);
-        // System.out.println("InnstikkSorteringer: " + innstikksorteringer);
 
         return tid;     //Returnerer tiden i ms. det tok aa sortere a
     }
@@ -97,10 +89,8 @@ public class RadixSort{
         for (int i = 0; i < count.length; i++){
             if (count[i] > MIN_NUM && shift > 0){
                 venstreRadix(b, a, (newPos[i]-count[i]), newPos[i], leftSortBit, maskLen);
-                rekursjoner++;
             }else if (shift > 0){
                 InnstikkSort.sort(b, (newPos[i]-count[i]), newPos[i]);
-                innstikksorteringer++;
             }
         }
         copyArray(a, b, left, right);
@@ -119,6 +109,5 @@ public class RadixSort{
                 return;
             }
         }
-        System.out.println("<---------- Sortert [" + a.length + "] ---------->");
     }
 }

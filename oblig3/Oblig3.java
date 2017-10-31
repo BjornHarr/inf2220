@@ -5,7 +5,7 @@ public class Oblig3{
     public static void main(String[] args) {
 
 
-        for (int i = 0; i < 8; i++){
+        for (int i = 1; i <= 7; i++){
             RadixSort sort = new RadixSort();
 
             int size = (int) Math.pow(10, i);
@@ -27,8 +27,9 @@ public class Oblig3{
 
             double diff = qTime / time;
 
+            System.out.println("<------------- 10^(" + i + ") ----------->");
             System.out.printf("   Tid:       %1.4f\n - QuickSort: %1.4f\n", time, qTime);
-            System.out.printf(" = Diff:      %1.4f\n-------------------------------\n", diff);
+            System.out.printf(" = Diff:      %1.4f\n<-------------------------------->\n\n", diff);
 
         }
     }

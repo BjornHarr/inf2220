@@ -1,0 +1,18 @@
+
+              |   10^(1) |   10^(2) |   10^(3) |   10^(4) |   10^(5) |   10^(6) |   10^(7) |
+--------------+----------+----------+----------+----------+----------+----------+----------+
+vRadixMulti   |   0,0088 |   0,0162 |   0,5210 |   5,4717 |   6,0711 |  56,0315 | 169,0152 |
+              |          |          |          |          |          |          |          |
+Array.sort()  |   0,3697 |   0,0288 |   0,2667 |   4,5756 |  11,5417 |  93,9879 | 935,1729 |
+              |          |          |          |          |          |          |          |
+Speedup       |  42,0836 |   1,7810 |   0,5120 |   0,8362 |   1,9011 |   1,6774 |   5,5331 |
+              |          |          |          |          |          |          |          |
+
+Dataene under er fra en kjoring jeg lurer paa om jeg var litt VEL heldig med, men jeg valgte aa
+skrive det over siden det er mer representativt.
+    ( 10^(1) | vRadixMulti: 0,0087 | Array.sort(): 1,0367 | Speedup: 119,1519)
+
+Ettersom tiden kan variere saa mye vil jeg konkludere med at dette ikke er en stabil algoritme.
+Ved kjoring 4 ganger kan speedup variere mellom 14, 20, 42 og 119 ganger raskere (Dersom vi har 10 elementer)
+Etter hvert som det settes inn flere elementet jevner forskjellen seg mer og mer ut, men speedup blir
+skjelden lik.
